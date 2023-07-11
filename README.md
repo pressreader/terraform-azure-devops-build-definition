@@ -33,7 +33,7 @@ module "build_definition" {
   ]
 
   schedules = {
-    days_to_build = ["When to build"]
+    days_to_build = ["When to build"]    # Defaults to ["Mon"]
     start_hours   = "Build start hour"   # Defaults to 0
     start_minutes = "Build start minute" # Defaults to 0
     time_zone     = "Build time zone"    # Defaults to (UTC-08:00) Pacific Time (US &Canada)

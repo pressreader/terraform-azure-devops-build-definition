@@ -82,7 +82,7 @@ variable "schedules" {
 EOF
   type        = object({
     enabled                    = optional(bool, true)
-    days_to_build              = optional(list(string))
+    days_to_build              = optional(list(string), ["Mon"])
     start_hours                = optional(number, 0)
     start_minutes              = optional(number, 0)
     time_zone                  = optional(string, "(UTC-08:00) Pacific Time (US &Canada)")
@@ -94,7 +94,7 @@ EOF
 
   validation {
     condition     = alltrue([
-      for v in var.schedules.days_to_build :contains(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], v)
+      for v in var.schedules.days_to_build : contains(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], v)
     ])
     error_message = "The days_to_build value must be one of Mon, Tue, Wed, Thu, Fri, Sat or Sun."
   }
